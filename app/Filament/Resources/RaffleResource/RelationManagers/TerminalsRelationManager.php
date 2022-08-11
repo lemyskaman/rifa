@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\TicketResource\RelationManagers;
+namespace App\Filament\Resources\RaffleResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Tables;
@@ -23,17 +23,6 @@ class TerminalsRelationManager extends HasManyRelationManager
     {
         return $form->schema([
             Grid::make(['default' => 0])->schema([
-                BelongsToSelect::make('raffle_id')
-                    ->rules(['required', 'exists:raffles,id'])
-                    ->relationship('raffle', 'name')
-                    ->searchable()
-                    ->placeholder('Raffle')
-                    ->columnSpan([
-                        'default' => 12,
-                        'md' => 12,
-                        'lg' => 12,
-                    ]),
-
                 TextInput::make('number')
                     ->rules(['required', 'numeric'])
                     ->numeric()
@@ -63,6 +52,17 @@ class TerminalsRelationManager extends HasManyRelationManager
                         'unavailable' => 'Unavailable',
                     ])
                     ->placeholder('Status')
+                    ->columnSpan([
+                        'default' => 12,
+                        'md' => 12,
+                        'lg' => 12,
+                    ]),
+
+                BelongsToSelect::make('ticket_id')
+                    ->rules(['nullable', 'exists:tickets,id'])
+                    ->relationship('ticket', 'id')
+                    ->searchable()
+                    ->placeholder('Ticket')
                     ->columnSpan([
                         'default' => 12,
                         'md' => 12,

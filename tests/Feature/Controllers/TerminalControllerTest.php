@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Terminal;
 
 use App\Models\Ticket;
+use App\Models\Raffle;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -111,12 +112,14 @@ class TerminalControllerTest extends TestCase
         $terminal = Terminal::factory()->create();
 
         $ticket = Ticket::factory()->create();
+        $raffle = Raffle::factory()->create();
 
         $data = [
             'number' => $this->faker->randomNumber,
             'status' => 'available',
             'price' => $this->faker->randomFloat(2, 0, 9999),
             'ticket_id' => $ticket->id,
+            'raffle_id' => $raffle->id,
         ];
 
         $response = $this->put(route('terminals.update', $terminal), $data);

@@ -38,6 +38,11 @@
                         Terminals
                         </x-dropdown-link>
                         @endcan
+                        @can('view-any', App\Models\Raffle::class)
+                        <x-dropdown-link href="{{ route('raffles.index') }}">
+                        Raffles
+                        </x-dropdown-link>
+                        @endcan
                 </x-nav-dropdown>
 
                     @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
@@ -198,6 +203,11 @@
                 @can('view-any', App\Models\Terminal::class)
                 <x-jet-responsive-nav-link href="{{ route('terminals.index') }}">
                 Terminals
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\Raffle::class)
+                <x-jet-responsive-nav-link href="{{ route('raffles.index') }}">
+                Raffles
                 </x-jet-responsive-nav-link>
                 @endcan
 

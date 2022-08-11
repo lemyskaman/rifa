@@ -53,11 +53,11 @@ class PaymentsRelationManager extends HasManyRelationManager
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('ticket.id')->limit(50),
                 Tables\Columns\TextColumn::make('amount'),
                 Tables\Columns\TextColumn::make('status')->enum([
                     '' => '',
                 ]),
-                Tables\Columns\TextColumn::make('ticket.id')->limit(50),
             ])
             ->filters([
                 Tables\Filters\Filter::make('created_at')

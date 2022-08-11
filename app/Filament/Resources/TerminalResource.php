@@ -27,10 +27,31 @@ class TerminalResource extends Resource
         return $form->schema([
             Card::make()->schema([
                 Grid::make(['default' => 0])->schema([
+                    BelongsToSelect::make('raffle_id')
+                        ->rules(['required', 'exists:raffles,id'])
+                        ->relationship('raffle', 'name')
+                        ->searchable()
+                        ->placeholder('Raffle')
+                        ->columnSpan([
+                            'default' => 12,
+                            'md' => 12,
+                            'lg' => 12,
+                        ]),
+
                     TextInput::make('number')
                         ->rules(['required', 'numeric'])
                         ->numeric()
                         ->placeholder('Number')
+                        ->columnSpan([
+                            'default' => 12,
+                            'md' => 12,
+                            'lg' => 12,
+                        ]),
+
+                    TextInput::make('price')
+                        ->rules(['required', 'numeric'])
+                        ->numeric()
+                        ->placeholder('Price')
                         ->columnSpan([
                             'default' => 12,
                             'md' => 12,
@@ -62,16 +83,6 @@ class TerminalResource extends Resource
                             'md' => 12,
                             'lg' => 12,
                         ]),
-
-                    TextInput::make('price')
-                        ->rules(['required', 'numeric'])
-                        ->numeric()
-                        ->placeholder('Price')
-                        ->columnSpan([
-                            'default' => 12,
-                            'md' => 12,
-                            'lg' => 12,
-                        ]),
                 ]),
             ]),
         ]);
@@ -81,14 +92,15 @@ class TerminalResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('raffle.name')->limit(50),
                 Tables\Columns\TextColumn::make('number'),
+                Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('status')->enum([
                     'available' => 'Available',
                     'saved' => 'Saved',
                     'unavailable' => 'Unavailable',
                 ]),
                 Tables\Columns\TextColumn::make('ticket.id')->limit(50),
-                Tables\Columns\TextColumn::make('price'),
             ])
             ->filters([
                 Tables\Filters\Filter::make('created_at')
@@ -121,6 +133,11 @@ class TerminalResource extends Resource
                                 )
                             );
                     }),
+
+                MultiSelectFilter::make('raffle_id')->relationship(
+                    'raffle',
+                    'name'
+                ),
 
                 MultiSelectFilter::make('ticket_id')->relationship(
                     'ticket',

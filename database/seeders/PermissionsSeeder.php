@@ -21,6 +21,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update payments']);
         Permission::create(['name' => 'delete payments']);
 
+        Permission::create(['name' => 'list raffles']);
+        Permission::create(['name' => 'view raffles']);
+        Permission::create(['name' => 'create raffles']);
+        Permission::create(['name' => 'update raffles']);
+        Permission::create(['name' => 'delete raffles']);
+
         Permission::create(['name' => 'list terminals']);
         Permission::create(['name' => 'view terminals']);
         Permission::create(['name' => 'create terminals']);

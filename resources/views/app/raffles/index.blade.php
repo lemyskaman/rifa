@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @lang('crud.payments.index_title')
+            @lang('crud.raffles.index_title')
         </h2>
     </x-slot>
 
@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Payment::class)
+                            @can('create', App\Models\Raffle::class)
                             <a
-                                href="{{ route('payments.create') }}"
+                                href="{{ route('raffles.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -50,28 +50,22 @@
                         <thead class="text-gray-700">
                             <tr>
                                 <th class="px-4 py-3 text-left">
-                                    @lang('crud.payments.inputs.ticket_id')
-                                </th>
-                                <th class="px-4 py-3 text-right">
-                                    @lang('crud.payments.inputs.amount')
+                                    @lang('crud.raffles.inputs.name')
                                 </th>
                                 <th class="px-4 py-3 text-left">
-                                    @lang('crud.payments.inputs.status')
+                                    @lang('crud.raffles.inputs.date')
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600">
-                            @forelse($payments as $payment)
+                            @forelse($raffles as $raffle)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-3 text-left">
-                                    {{ optional($payment->ticket)->id ?? '-' }}
-                                </td>
-                                <td class="px-4 py-3 text-right">
-                                    {{ $payment->amount ?? '-' }}
+                                    {{ $raffle->name ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $payment->status ?? '-' }}
+                                    {{ $raffle->date ?? '-' }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-center"
@@ -86,9 +80,9 @@
                                             align-middle
                                         "
                                     >
-                                        @can('update', $payment)
+                                        @can('update', $raffle)
                                         <a
-                                            href="{{ route('payments.edit', $payment) }}"
+                                            href="{{ route('raffles.edit', $raffle) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -100,9 +94,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $payment)
+                                        @endcan @can('view', $raffle)
                                         <a
-                                            href="{{ route('payments.show', $payment) }}"
+                                            href="{{ route('raffles.show', $raffle) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -112,9 +106,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $payment)
+                                        @endcan @can('delete', $raffle)
                                         <form
-                                            action="{{ route('payments.destroy', $payment) }}"
+                                            action="{{ route('raffles.destroy', $raffle) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >
@@ -138,7 +132,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4">
+                                <td colspan="3">
                                     @lang('crud.common.no_items_found')
                                 </td>
                             </tr>
@@ -146,9 +140,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="4">
+                                <td colspan="3">
                                     <div class="mt-10 px-4">
-                                        {!! $payments->render() !!}
+                                        {!! $raffles->render() !!}
                                     </div>
                                 </td>
                             </tr>

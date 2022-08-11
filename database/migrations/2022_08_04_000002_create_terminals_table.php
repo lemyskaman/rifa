@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->set('status', ['available', 'saved', 'unavailable']);
             $table->uuid('ticket_id')->nullable();
             $table->decimal('price', 9, 2);
+            $table->uuid('raffle_id');
 
             $table->index('status');
 

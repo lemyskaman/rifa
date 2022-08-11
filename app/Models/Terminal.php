@@ -15,12 +15,23 @@ class Terminal extends Model
     use Searchable;
     use SoftDeletes;
 
-    protected $fillable = ['number', 'status', 'ticket_id', 'price'];
+    protected $fillable = [
+        'number',
+        'status',
+        'ticket_id',
+        'price',
+        'raffle_id',
+    ];
 
     protected $searchableFields = ['*'];
 
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    public function raffle()
+    {
+        return $this->belongsTo(Raffle::class);
     }
 }

@@ -98,9 +98,9 @@ return [
         'edit_title' => 'Edit Payment',
         'show_title' => 'Show Payment',
         'inputs' => [
+            'ticket_id' => 'Ticket',
             'amount' => 'Amount',
             'status' => 'Status',
-            'ticket_id' => 'Ticket',
         ],
     ],
 
@@ -112,9 +112,37 @@ return [
         'edit_title' => 'Edit Terminal',
         'show_title' => 'Show Terminal',
         'inputs' => [
+            'raffle_id' => 'Raffle',
             'number' => 'Number',
+            'price' => 'Price',
             'status' => 'Status',
             'ticket_id' => 'Ticket',
+        ],
+    ],
+
+    'raffles' => [
+        'name' => 'Raffles',
+        'index_title' => 'Raffles List',
+        'new_title' => 'New Raffle',
+        'create_title' => 'Create Raffle',
+        'edit_title' => 'Edit Raffle',
+        'show_title' => 'Show Raffle',
+        'inputs' => [
+            'name' => 'Name',
+            'date' => 'Fecha de Sorteo',
+        ],
+    ],
+
+    'raffle_terminals' => [
+        'name' => 'Raffle Terminals',
+        'index_title' => 'Terminals List',
+        'new_title' => 'New Terminal',
+        'create_title' => 'Create Terminal',
+        'edit_title' => 'Edit Terminal',
+        'show_title' => 'Show Terminal',
+        'inputs' => [
+            'number' => 'Number',
+            'status' => 'Status',
             'price' => 'Price',
         ],
     ],

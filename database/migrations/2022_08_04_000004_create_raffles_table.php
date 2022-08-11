@@ -12,14 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('raffles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->decimal('amount', 9, 2);
-            $table->set('status', ['']);
-            $table->uuid('ticket_id')->nullable();
+            $table->string('name')->unique();
+            $table->date('date');
+
+            $table->index('id');
+            $table->index('name');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('raffles');
     }
 };

@@ -2,12 +2,34 @@
 
 <div class="flex flex-wrap">
     <x-inputs.group class="w-full">
+        <x-inputs.select name="raffle_id" label="Raffle" required>
+            @php $selected = old('raffle_id', ($editing ? $terminal->raffle_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Raffle</option>
+            @foreach($raffles as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <x-inputs.number
             name="number"
             label="Number"
             value="{{ old('number', ($editing ? $terminal->number : '')) }}"
             max="255"
             placeholder="Number"
+            required
+        ></x-inputs.number>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.number
+            name="price"
+            label="Price"
+            value="{{ old('price', ($editing ? $terminal->price : '')) }}"
+            max="255"
+            step="0.01"
+            placeholder="Price"
             required
         ></x-inputs.number>
     </x-inputs.group>
@@ -29,17 +51,5 @@
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
-    </x-inputs.group>
-
-    <x-inputs.group class="w-full">
-        <x-inputs.number
-            name="price"
-            label="Price"
-            value="{{ old('price', ($editing ? $terminal->price : '')) }}"
-            max="255"
-            step="0.01"
-            placeholder="Price"
-            required
-        ></x-inputs.number>
     </x-inputs.group>
 </div>

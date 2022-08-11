@@ -49,8 +49,14 @@
                     <table class="w-full max-w-full mb-4 bg-transparent">
                         <thead class="text-gray-700">
                             <tr>
+                                <th class="px-4 py-3 text-left">
+                                    @lang('crud.terminals.inputs.raffle_id')
+                                </th>
                                 <th class="px-4 py-3 text-right">
                                     @lang('crud.terminals.inputs.number')
+                                </th>
+                                <th class="px-4 py-3 text-right">
+                                    @lang('crud.terminals.inputs.price')
                                 </th>
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.terminals.inputs.status')
@@ -58,26 +64,27 @@
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.terminals.inputs.ticket_id')
                                 </th>
-                                <th class="px-4 py-3 text-right">
-                                    @lang('crud.terminals.inputs.price')
-                                </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600">
                             @forelse($terminals as $terminal)
                             <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 text-left">
+                                    {{ optional($terminal->raffle)->name ?? '-'
+                                    }}
+                                </td>
                                 <td class="px-4 py-3 text-right">
                                     {{ $terminal->number ?? '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-right">
+                                    {{ $terminal->price ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
                                     {{ $terminal->status ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
                                     {{ optional($terminal->ticket)->id ?? '-' }}
-                                </td>
-                                <td class="px-4 py-3 text-right">
-                                    {{ $terminal->price ?? '-' }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-center"
@@ -144,7 +151,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5">
+                                <td colspan="6">
                                     @lang('crud.common.no_items_found')
                                 </td>
                             </tr>
@@ -152,7 +159,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <div class="mt-10 px-4">
                                         {!! $terminals->render() !!}
                                     </div>

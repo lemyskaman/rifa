@@ -19,6 +19,13 @@ return new class extends Migration {
                 ->on('tickets')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+
+            $table
+                ->foreign('raffle_id')
+                ->references('id')
+                ->on('raffles')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
         });
     }
 
@@ -31,6 +38,7 @@ return new class extends Migration {
     {
         Schema::table('terminals', function (Blueprint $table) {
             $table->dropForeign(['ticket_id']);
+            $table->dropForeign(['raffle_id']);
         });
     }
 };

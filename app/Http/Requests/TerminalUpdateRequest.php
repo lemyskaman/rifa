@@ -24,10 +24,11 @@ class TerminalUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'raffle_id' => ['required', 'exists:raffles,id'],
             'number' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
             'status' => ['required', 'in:available,saved,unavailable'],
             'ticket_id' => ['nullable', 'exists:tickets,id'],
-            'price' => ['required', 'numeric'],
         ];
     }
 }

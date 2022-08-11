@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Raffle;
 use App\Models\Ticket;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
@@ -36,9 +37,10 @@ class TerminalController extends Controller
     {
         $this->authorize('create', Terminal::class);
 
+        $raffles = Raffle::pluck('name', 'id');
         $tickets = Ticket::pluck('id', 'id');
 
-        return view('app.terminals.create', compact('tickets'));
+        return view('app.terminals.create', compact('raffles', 'tickets'));
     }
 
     /**
@@ -79,9 +81,13 @@ class TerminalController extends Controller
     {
         $this->authorize('update', $terminal);
 
+        $raffles = Raffle::pluck('name', 'id');
         $tickets = Ticket::pluck('id', 'id');
 
-        return view('app.terminals.edit', compact('terminal', 'tickets'));
+        return view(
+            'app.terminals.edit',
+            compact('terminal', 'raffles', 'tickets')
+        );
     }
 
     /**

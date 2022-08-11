@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\RaffleController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TerminalController;
 use App\Http\Controllers\PermissionController;
@@ -30,7 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-Route::prefix('/dashboard-crud')
+Route::prefix('/')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function () {
         Route::resource('roles', RoleController::class);
@@ -40,4 +41,5 @@ Route::prefix('/dashboard-crud')
         Route::resource('tickets', TicketController::class);
         Route::resource('payments', PaymentController::class);
         Route::resource('terminals', TerminalController::class);
+        Route::resource('raffles', RaffleController::class);
     });

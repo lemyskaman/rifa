@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TerminalStoreRequest extends FormRequest
+class RaffleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +25,13 @@ class TerminalStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'raffle_id' => ['required', 'exists:raffles,id'],
-            'number' => ['required', 'numeric'],
-            'price' => ['required', 'numeric'],
-            'status' => ['required', 'in:available,saved,unavailable'],
-            'ticket_id' => ['nullable', 'exists:tickets,id'],
+            'name' => [
+                'required',
+                Rule::unique('raffles', 'name')->ignore($this->raffle),
+                'max:255',
+                'string',
+            ],
+            'date' => ['required', 'date'],
         ];
     }
 }

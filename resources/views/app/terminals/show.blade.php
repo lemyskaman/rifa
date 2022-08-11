@@ -17,9 +17,24 @@
                 <div class="mt-4 px-4">
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
+                            @lang('crud.terminals.inputs.raffle_id')
+                        </h5>
+                        <span
+                            >{{ optional($terminal->raffle)->name ?? '-'
+                            }}</span
+                        >
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="font-medium text-gray-700">
                             @lang('crud.terminals.inputs.number')
                         </h5>
                         <span>{{ $terminal->number ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="font-medium text-gray-700">
+                            @lang('crud.terminals.inputs.price')
+                        </h5>
+                        <span>{{ $terminal->price ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
@@ -34,12 +49,6 @@
                         <span
                             >{{ optional($terminal->ticket)->id ?? '-' }}</span
                         >
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="font-medium text-gray-700">
-                            @lang('crud.terminals.inputs.price')
-                        </h5>
-                        <span>{{ $terminal->price ?? '-' }}</span>
                     </div>
                 </div>
 

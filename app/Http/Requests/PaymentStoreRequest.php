@@ -24,9 +24,9 @@ class PaymentStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'ticket_id' => ['nullable', 'exists:tickets,id'],
             'amount' => ['required', 'numeric'],
             'status' => ['required', 'in:'],
-            'ticket_id' => ['required', 'exists:tickets,id'],
         ];
     }
 }
