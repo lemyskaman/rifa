@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-Route::prefix('/')
+Route::prefix('/dashboard')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function () {
         Route::resource('roles', RoleController::class);
