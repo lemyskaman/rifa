@@ -133,7 +133,7 @@ return [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
         'password' => [
-            'min' => 'La :attribute debe contener más de :min caracteres',
+            'min' => 'La contraseña (:attribute)  debe contener más de :min caracteres',
         ],
     ],
 ];

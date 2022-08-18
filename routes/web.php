@@ -8,6 +8,9 @@ use App\Http\Controllers\RaffleController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TerminalController;
 use App\Http\Controllers\PermissionController;
+use Filament\Facades\Filament;
+use Filament\Http\Controllers\AssetController;
+use Filament\Http\Responses\Auth\Contracts\LogoutResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +33,10 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-Route::prefix('/dashboard')
+
+
+
+Route::prefix('/')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function () {
         Route::resource('roles', RoleController::class);
@@ -42,3 +48,7 @@ Route::prefix('/dashboard')
         Route::resource('terminals', TerminalController::class);
         Route::resource('raffles', RaffleController::class);
     });
+
+
+
+
